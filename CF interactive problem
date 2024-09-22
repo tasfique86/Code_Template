@@ -1,0 +1,112 @@
+#include <bits/stdc++.h>
+
+#define MAX                 100005
+#define ll                  long long int
+#define vi                  vector<int>
+#define vl                  vector<ll>
+#define pb                  push_back
+#define test                int txx;cin>>txx;while (txx--)
+#define YES                 cout << "YES" << endl
+#define NO                  cout << "NO" << endl
+#define gcd(a,b)            __gcd(a,b)
+#define lcm(a,b)            (a*b)/gcd(a,b)
+#define fr(i,a,b)           for(ll i=a;i<=b;i++)
+#define srt(a)              sort (a.begin(),a.end())
+#define rsrt(v)             sort(v.rbegin(),v.rend())
+#define Asrt(a,n)             sort (a,a+n);
+#define Arsrt(a,n)            sort (a,a+n,greater<int>());
+#define mp(x,y)             make_pair(x,y)
+#define vp                  vector<pair<int, int > >
+#define vpl                 vector<pair<ll, ll> >
+#define upbd(v,x)           upper_bound(v.begin(),v.end(),r)
+#define lwbd(v,x)           lower_bound(v.begin(),v.end(),r)
+#define v_min(a)            *min_element (a.begin(),a.end())
+#define v_max(a)            *max_element (a.begin(),a.end())
+#define F                   first
+#define S                   second
+#define MOD                 1000000007
+#define uint                unsigned int
+#define sp                  cout<<fixed<<setprecision(10)<<num<<endl
+#define Vsum(a)             accumulate(a.begin(),a.end(),0)
+#define Asum(a,n)           accumulate(a,a+n,0)
+#define cov(v)              for(auto it:v)cout<<it<<' '; cout<<endl;
+#define civ(v)              for(auto &it:v) cin>>it;
+#define Nl                  cout<<"\n";
+
+
+#define TR ios::sync_with_stdio(false);cin.tie(0);
+
+using namespace std;
+
+
+
+
+
+
+
+char ask(int a,int b,int c,int d)
+{
+    cout<<"? "<<a<<" "<<b<<" "<<c<<" "<<d<<endl;
+    char ret;
+    cin>>ret;
+    return ret;
+}
+
+/////////////////   https://codeforces.com/contest/1937/problem/C //////////////////
+
+int main()
+{
+    TR
+    //SievePrime();
+
+    test
+    {
+      int n,k,x,z,y,m,sm=0,wa;
+      
+      cin>>n;
+
+      int mxin=0;
+      for(int i=1;i<n;i++)
+      {
+        char res= ask(mxin,mxin,i,i);
+        if(res=='<')
+            mxin=i;
+      }
+
+      int sec_mx=-1;
+      for(int i=0;i<n;i++)
+      {
+        if(i == mxin)
+        {
+            continue;
+        }
+        if(sec_mx==-1)
+            sec_mx=i;
+        else
+        {
+            char res= ask(sec_mx,mxin,i,mxin);
+            if(res=='<')
+                sec_mx=i;
+            else if(res == '=')
+            {
+                res=ask(sec_mx,sec_mx,i,i);
+                if(res== '>')
+                    sec_mx=i;
+            }
+        }
+      }
+      cout<<"! "<<sec_mx<<" "<<mxin<<endl;
+
+
+
+
+
+
+      
+ 
+    }
+   
+
+  }
+
+
