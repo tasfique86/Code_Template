@@ -1,0 +1,141 @@
+#include <bits/stdc++.h>
+
+#define MAX                 100005
+#define ll                  long long int
+#define vi                  vector<int>
+#define vl                  vector<ll>
+#define pb                  push_back
+#define test                int txx;cin>>txx;while (txx--)
+#define YES                 cout << "YES" << endl
+#define NO                  cout << "NO" << endl
+#define gcd(a,b)            __gcd(a,b)
+#define lcm(a,b)            (a*b)/gcd(a,b)
+#define fr(i,a,b)           for(ll i=a;i<=b;i++)
+#define srt(a)              sort (a.begin(),a.end())
+#define rsrt(v)             sort(v.rbegin(),v.rend())
+#define Asrt(a,n)             sort (a,a+n);
+#define Arsrt(a,n)            sort (a,a+n,greater<int>());
+#define mp(x,y)             make_pair(x,y)
+#define vp                  vector<pair<int, int > >
+#define vpl                 vector<pair<ll, ll> >
+#define upbd(v,x)           upper_bound(v.begin(),v.end(),r)
+#define lwbd(v,x)           lower_bound(v.begin(),v.end(),r)
+#define v_min(a)            *min_element (a.begin(),a.end())
+#define v_max(a)            *max_element (a.begin(),a.end())
+#define F                   first
+#define S                   second
+#define MOD                 1000000007
+#define uint                unsigned int
+#define sp                  cout<<fixed<<setprecision(10)<<num<<endl
+#define Vsum(a)             accumulate(a.begin(),a.end(),0)
+#define Asum(a,n)           accumulate(a,a+n,0)
+#define cov(v)              for(auto it:v)cout<<it<<' '; cout<<endl;
+#define civ(v)              for(auto &it:v) cin>>it;
+#define Nl                  cout<<"\n";
+
+
+#define TR ios::sync_with_stdio(false);cin.tie(0);
+
+using namespace std;
+
+
+//+++++++++++++++++  GRAPH   ++++++++
+
+
+
+const int Na=1e5+10;
+
+
+vector<int> gp[Na];
+
+
+bool vis[Na];
+
+int depth[Na],height[Na];
+int parent[Na],level[Na];
+
+void bfs(int source){
+    queue<int> q;
+    q.push(source);
+    //cout<<source<<" ";
+    vis[source]=true;
+
+    while(!q.empty()){
+
+        int cr_v=q.front();
+        q.pop();
+        cout<<cr_v<<" ";
+        for(int child : gp[cr_v]){
+            if(vis[child])
+                continue;
+
+            q.push(child);
+            
+            vis[child]=true;
+            level[child]=level[cr_v]+1;
+        }
+        
+    }
+    cout<<endl;
+    
+
+}
+
+
+int main()
+{
+    TR
+    //SievePrime();
+    
+
+    //________BFS________________
+
+    test
+    {
+      int n,m,k,x,z,y;
+
+      // n-> node or vartex
+      // m-> edge 
+      
+      cin>>n;
+
+      for(int i=0;i<n-1;i++)
+      {
+        int v1,v2,wt;
+        cin>>v1>>v2;
+
+       //adjacency list
+        gp[v1].pb(v2);
+        gp[v2].pb(v1);
+    
+      }
+      
+      bfs(1);
+
+      for(int i=1;i<=n;i++){
+        cout<<i<<" : "<<level[i]<<endl;
+      }
+
+     
+     
+ 
+    }
+   
+
+  }
+
+//////////........input
+// 1
+// 13
+// 1 2
+// 1 3
+// 1 13
+// 2 5
+// 3 4
+// 5 6
+// 5 7
+// 5 8
+// 8 12
+// 4 9
+// 4 10
+// 10 11
