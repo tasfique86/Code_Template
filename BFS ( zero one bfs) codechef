@@ -1,0 +1,215 @@
+#include <bits/stdc++.h>
+
+#define MAX                 100005
+#define ll                  long long int
+#define vi                  vector<int>
+#define vl                  vector<ll>
+#define pb                  push_back
+#define test                int txx;cin>>txx;while (txx--)
+#define YES                 cout << "YES" << endl
+#define NO                  cout << "NO" << endl
+#define gcd(a,b)            __gcd(a,b)
+#define lcm(a,b)            (a*b)/gcd(a,b)
+#define fr(i,a,b)           for(ll i=a;i<=b;i++)
+#define srt(a)              sort (a.begin(),a.end())
+#define rsrt(v)             sort(v.rbegin(),v.rend())
+#define Asrt(a,n)             sort (a,a+n);
+#define Arsrt(a,n)            sort (a,a+n,greater<int>());
+#define mp(x,y)             make_pair(x,y)
+#define vp                  vector<pair<int, int > >
+#define vpl                 vector<pair<ll, ll> >
+#define upbd(v,x)           upper_bound(v.begin(),v.end(),r)
+#define lwbd(v,x)           lower_bound(v.begin(),v.end(),r)
+#define v_min(a)            *min_element (a.begin(),a.end())
+#define v_max(a)            *max_element (a.begin(),a.end())
+#define F                   first
+#define S                   second
+#define MOD                 1000000007
+#define uint                unsigned int
+#define sp                  cout<<fixed<<setprecision(10)<<num<<endl
+#define Vsum(a)             accumulate(a.begin(),a.end(),0)
+#define Asum(a,n)           accumulate(a,a+n,0)
+#define cov(v)              for(auto it:v)cout<<it<<' '; cout<<endl;
+#define civ(v)              for(auto &it:v) cin>>it;
+#define Nl                  cout<<"\n";
+
+
+#define TR ios::sync_with_stdio(false);cin.tie(0);
+
+using namespace std;
+
+
+const ll N=1e6;
+vector<bool> isPrime(N+2,1);
+//vector<int> lp(N+2,0),hp(N+2,0);
+vl primess;
+//int has[N];
+void SievePrime()
+{
+    isPrime[0]=isPrime[1]=false;
+    for(ll i=2; i<=N; i++)
+
+
+    {
+        if(isPrime[i]== true)
+        {
+            primess.pb(i);
+
+            //lp[i]=hp[i]=i;
+            for(ll j=i*i; j<=N; j+=i)
+            {
+                isPrime[j]=false;
+                // hp[j]=i;
+                /* if(lp[j]==0)
+                 {
+                   lp[j]=i;
+                 }*/
+            }
+        }
+    }
+
+}
+
+
+
+ll binaryExpoIter( ll a, ll b  )
+{
+    ll res=1;
+    while(b)
+    {
+        if(b&1)
+        {
+            res=res*a;
+        }
+        a =a*a;
+        b=b>>1;
+
+    }
+
+    return res;
+}
+
+
+
+// void printBinary(ll num)
+// {
+//   for(int i=32;i>=0;--i)
+//   {
+//     cout<<((num>>i)&1);
+//   }
+//   cout<<endl;
+// }
+
+
+
+//ll dp[10004]={-1};
+
+ll fun(ll amount,vl &v){
+if(amount==0)
+  return 0;
+
+ll ans=INT_MAX;
+ for(auto coin: v){
+  if(amount-coin>=0)
+      ans=min(ans,fun(amount-coin,v)+1);
+ }
+ return ans;
+
+}
+
+int ok(ll in,ll tg, ll m)
+{
+    ll sm=(in*(in+1))/2;
+    sm-=m;
+  //  cout<<in<<" "<<tg<<" "<<sm<<endl;
+    if(sm<=tg)
+        return 1;
+    return 0;
+
+}
+
+
+//+++++++++++++++++  GRAPH   ++++++++
+
+
+
+const int Na=1e5+10;
+
+
+
+
+//vector<pair<int,int>> graph3[Na]; //whith weight 
+
+
+const int INFI=1e9+10;
+
+
+vector<pair<int,int>> g[Na];
+
+vector<int> lev(Na,INFI);
+
+
+int bfs( int n){
+   // YES;
+
+    deque <int> q;
+
+    q.push_back(1);
+    lev[1]=0;
+
+    while(!q.empty()){
+
+        int cr_v=q.front();
+        q.pop_front();
+
+        for(auto child : g[cr_v])
+        {
+            int child_v=child.first;
+            int wt=child.second;
+            if(lev[cr_v]+wt<lev[child_v]){
+                lev[child_v]=lev[cr_v]+wt;
+                if(wt==1){
+                    q.push_back(child_v);
+                }
+                else{
+                    q.push_front(child_v);
+                }
+
+            }
+        }
+   }
+    return  lev[n]==INFI ? -1:lev[n];
+
+}
+
+int main()
+{
+    TR
+    //SievePrime();
+    
+   //https://www.codechef.com/AUG14/problems/REVERSE
+   
+
+    test
+    {
+      int n;
+
+    
+      int m;
+      cin>>n>>m;
+         
+      for(int i=0;i<m;i++)
+      {
+        int x,y;
+        cin>>x>>y;
+        if(x==y) continue;
+        g[x].pb({y,0});
+        g[y].pb({x,1});
+
+      }
+      cout<<bfs(n)<<endl;
+    }
+   
+
+}
+
