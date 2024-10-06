@@ -1,0 +1,116 @@
+#include <bits/stdc++.h>
+
+#define MAX                 100005
+#define ll                  long long int
+#define vi                  vector<int>
+#define vl                  vector<ll>
+#define pb                  push_back
+#define test                int txx;cin>>txx;while (txx--)
+#define YES                 cout << "YES" << endl
+#define NO                  cout << "NO" << endl
+#define gcd(a,b)            __gcd(a,b)
+#define lcm(a,b)            (a*b)/gcd(a,b)
+#define fr(i,a,b)           for(ll i=a;i<=b;i++)
+#define srt(a)              sort (a.begin(),a.end())
+#define rsrt(v)             sort(v.rbegin(),v.rend())
+#define Asrt(a,n)             sort (a,a+n);
+#define Arsrt(a,n)            sort (a,a+n,greater<int>());
+#define mp(x,y)             make_pair(x,y)
+#define vp                  vector<pair<int, int > >
+#define vpl                 vector<pair<ll, ll> >
+#define upbd(v,x)           upper_bound(v.begin(),v.end(),r)
+#define lwbd(v,x)           lower_bound(v.begin(),v.end(),r)
+#define v_min(a)            *min_element (a.begin(),a.end())
+#define v_max(a)            *max_element (a.begin(),a.end())
+#define F                   first
+#define S                   second
+#define MOD                 1000000007
+#define uint                unsigned int
+#define sp                  cout<<fixed<<setprecision(10)<<num<<endl
+#define Vsum(a)             accumulate(a.begin(),a.end(),0)
+#define Asum(a,n)           accumulate(a,a+n,0)
+#define cov(v)              for(auto it:v)cout<<it<<' '; cout<<endl;
+#define civ(v)              for(auto &it:v) cin>>it;
+#define Nl                  cout<<"\n";
+
+
+#define TR ios::sync_with_stdio(false);cin.tie(0);
+
+using namespace std;
+
+
+///--------------Graph Moves--------------------------------------
+///const int fx[] = {+1,-1,+0,+0};
+///const int fy[] = {+0,+0,+1,-1};
+///const int fx[] = {+0,+0,+1,-1,-1,+1,-1,+1}; ///King's move
+///const int fy[] = {-1,+1,+0,+0,+1,+1,-1,-1}; ///king's Move
+///const int fx[] = {-2,-2,-1,-1,+1,+1,+2,+2}; ///knight's move
+///const int fy[] = {-1,+1,-2,+2,-2,+2,-1,+1}; ///knight's move
+///---------------------------------------------------------------
+
+
+const int Na=1e5+10;
+
+
+// O(n*(2^n))
+
+vector <vector<int>> subsets(vector<int>& nums){
+    int n=nums.size();
+    int subset_ct=(1<<n);
+    vector<vector<int>> all_subsets;
+    for(int mask=0;mask<subset_ct;mask++)
+    {
+        vi vv;
+        for(int i=0;i<n;i++)
+        {
+            if((mask&(1<<i))!=0)
+                vv.pb(nums[i]);
+        }
+        all_subsets.pb(vv);
+    }
+    return all_subsets;
+}
+
+
+int main()
+{
+    TR
+
+
+
+
+    ll con=1;
+
+    ll n,a,b,sm=0;
+
+/////__________find all subsets of a set__________
+
+    test
+    {
+
+        ll a,b,c,n,m,k;
+
+        cin>>n; //array size
+        
+        vi v;
+        for(int i=0;i<n;i++)
+        {
+            cin>>a;
+            v.pb(a);
+        }
+
+        auto all_sub=subsets(v);
+
+        for(auto it:all_sub)
+        {
+            for(auto iit:it)
+                cout<<iit<<" ";
+
+            Nl;
+        }
+        
+    }
+
+
+}
+
