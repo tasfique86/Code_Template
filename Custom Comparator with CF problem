@@ -213,7 +213,9 @@ int main()
         
         sort(v.begin(),v.end(),cmp);
 
+        //---print for understand-----
 
+        
        // for(auto it:v)
        //  cout<<it.F<<" "<<it.S<<endl;
 
