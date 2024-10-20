@@ -40,6 +40,118 @@
 using namespace std;
 
 
+///--------------Graph Moves--------------------------------------
+///const int fx[] = {+1,-1,+0,+0};
+///const int fy[] = {+0,+0,+1,-1};
+///const int fx[] = {+0,+0,+1,-1,-1,+1,-1,+1}; ///King's move
+///const int fy[] = {-1,+1,+0,+0,+1,+1,-1,-1}; ///king's Move
+///const int fx[] = {-2,-2,-1,-1,+1,+1,+2,+2}; ///knight's move
+///const int fy[] = {-1,+1,-2,+2,-2,+2,-1,+1}; ///knight's move
+///---------------------------------------------------------------
+
+
+//const ll N=1e6;
+//vector<bool> isPrime(N+2,1);
+////vector<int> lp(N+2,0),hp(N+2,0);
+//vl primess;
+////int has[N];
+//void SievePrime()
+//{
+//    isPrime[0]=isPrime[1]=false;
+//    for(ll i=2; i<=N; i++)
+//
+//
+//    {
+//        if(isPrime[i]== true)
+//        {
+//            primess.pb(i);
+//
+//            //lp[i]=hp[i]=i;
+//            for(ll j=i*i; j<=N; j+=i)
+//            {
+//                isPrime[j]=false;
+//                // hp[j]=i;
+//                /* if(lp[j]==0)
+//                 {
+//                   lp[j]=i;
+//                 }*/
+//            }
+//        }
+//    }
+//
+//}
+//
+//
+//
+//ll binaryExpoIter( ll a, ll b  )
+//{
+//    ll res=1;
+//    while(b)
+//    {
+//        if(b&1)
+//        {
+//            res=res*a;
+//        }
+//        a =a*a;
+//        b=b>>1;
+//
+//    }
+//
+//    return res;
+//}
+//
+//
+//
+//// void printBinary(ll num)
+//// {
+////   for(int i=32;i>=0;--i)
+////   {
+////     cout<<((num>>i)&1);
+////   }
+////   cout<<endl;
+//// }
+//
+//
+//
+////ll dp[10004]={-1};
+//
+//ll fun(ll amount,vl &v){
+//if(amount==0)
+//  return 0;
+//
+//ll ans=INT_MAX;
+// for(auto coin: v){
+//  if(amount-coin>=0)
+//      ans=min(ans,fun(amount-coin,v)+1);
+// }
+// return ans;
+//
+//}
+//
+//int ok(ll in,ll tg, ll m)
+//{
+//    ll sm=(in*(in+1))/2;
+//    sm-=m;
+//  //  cout<<in<<" "<<tg<<" "<<sm<<endl;
+//    if(sm<=tg)
+//        return 1;
+//    return 0;
+//
+//}
+//
+
+//+++++++++++++++++  GRAPH   ++++++++
+
+
+/////---->>> floyd warshell Algorithm
+
+const int Na=510;
+
+const int INF=1e9;
+
+
+
+
 bool cmp(pair<int,int>a, pair<int,int> b)
 {
     if(max(a.F,a.S)==max(b.F,b.S))
@@ -52,12 +164,28 @@ bool cmp(pair<int,int>a, pair<int,int> b)
     }
     else
     {
-        if(max(a.F,a.S)>max(b.F,b.S))
-            return false;
+        if(max(a.F,a.S)<max(b.F,b.S))
+            return true;
         else
-           return true;
+           return false;
     }
 }
+
+///----simplify the cmp funtion--------
+
+
+// bool cmp(pair<int,int>a, pair<int,int> b)
+// {
+//     if(max(a.F,a.S)==max(b.F,b.S))
+//     { 
+//         return (min(a.F,a.S) < min(b.F,b.S ));
+//     }
+//     else
+//     {
+//         return (max(a.F,a.S)<max(b.F,b.S));
+//     }
+// }
+
 
 int main()
 {
