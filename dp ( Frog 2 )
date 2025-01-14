@@ -1,0 +1,223 @@
+#include <bits/stdc++.h>
+#define MAX                 100005
+#define ll                  long long int
+#define vi                  vector<int>
+#define vl                  vector<ll>
+#define pb                  push_back
+#define test                int txx;cin>>txx;while (txx--)
+#define YES                 cout << "YES" << endl
+#define NO                  cout << "NO" << endl
+#define gcd(a,b)            __gcd(a,b)
+#define lcm(a,b)            (a*b)/gcd(a,b)
+#define fr(i,a,b)           for(ll i=a;i<=b;i++)
+#define srt(a)              sort (a.begin(),a.end())
+#define rsrt(v)             sort(v.rbegin(),v.rend())
+#define Asrt(a,n)             sort (a,a+n);
+#define Arsrt(a,n)            sort (a,a+n,greater<int>());
+#define mkp(x,y)             make_pair(x,y)
+#define vp                  vector<pair<int, int > >
+#define vpl                 vector<pair<ll, ll> >
+#define upbd(v,x)           upper_bound(v.begin(),v.end(),r)
+#define lwbd(v,x)           lower_bound(v.begin(),v.end(),r)
+#define v_min(a)            *min_element (a.begin(),a.end())
+#define v_max(a)            *max_element (a.begin(),a.end())
+#define F                   first
+#define S                   second
+#define MOD                 1000000007
+#define uint                unsigned int
+#define setp(num)           cout<<fixed<<setprecision(6)<<num<<endl
+#define Vsum(a)             accumulate(a.begin(),a.end(),0)
+#define Asum(a,n)           accumulate(a,a+n,0)
+#define coutv(v)            for(auto it:v){cout<<it<<' ';}cout<<endl;
+#define cinv(v)             for(auto &it:v)cin>>it;
+#define p_queue              priority_queue<ll>
+
+#define Nl                  cout<<"\n";
+
+
+#define TR ios::sync_with_stdio(false);cin.tie(0);
+
+using namespace std;
+
+
+///--------------Graph Moves--------------------------------------
+///const int fx[] = {+1,-1,+0,+0};
+///const int fy[] = {+0,+0,+1,-1};
+///const int fx[] = {+0,+0,+1,-1,-1,+1,-1,+1}; ///King's move
+///const int fy[] = {-1,+1,+0,+0,+1,+1,-1,-1}; ///king's Move
+///const int fx[] = {-2,-2,-1,-1,+1,+1,+2,+2}; ///knight's move
+///const int fy[] = {-1,+1,-2,+2,-2,+2,-1,+1}; ///knight's move
+///---------------------------------------------------------------
+
+
+//const ll N=1e6;
+//vector<bool> isPrime(N+2,1);
+////vector<int> lp(N+2,0),hp(N+2,0);
+//vl primess;
+////int has[N];
+//void SievePrime()
+//{
+//    isPrime[0]=isPrime[1]=false;
+//    for(ll i=2; i<=N; i++)
+//
+//
+//    {
+//        if(isPrime[i]== true)
+//        {
+//            primess.pb(i);
+//
+//            //lp[i]=hp[i]=i;
+//            for(ll j=i*i; j<=N; j+=i)
+//            {
+//                isPrime[j]=false;
+//                // hp[j]=i;
+//                /* if(lp[j]==0)
+//                 {
+//                   lp[j]=i;
+//                 }*/
+//            }
+//        }
+//    }
+//
+//}
+//
+//
+//
+//ll binaryExpoIter( ll a, ll b  )
+//{
+//   ll res=1;
+//   while(b)
+//   {
+//       if(b&1)
+//       {
+//           res=res*a;
+//       }
+//       a =a*a;
+//       b=b>>1;
+//
+//   }
+//
+//    return res;
+//}
+//
+//
+//
+//// void printBinary(ll num)
+//// {
+////   for(int i=32;i>=0;--i)
+////   {
+////     cout<<((num>>i)&1);
+////   }
+////   cout<<endl;
+//// }
+//
+//
+//
+////ll dp[10004]={-1};
+//
+//ll fun(ll amount,vl &v){
+//if(amount==0)
+//  return 0;
+//
+//ll ans=INT_MAX;
+// for(auto coin: v){
+//  if(amount-coin>=0)
+//      ans=min(ans,fun(amount-coin,v)+1);
+// }
+// return ans;
+//
+//}
+//
+//int ok(ll in,ll tg, ll m)
+//{
+//    ll sm=(in*(in+1))/2;
+//    sm-=m;
+//  //  cout<<in<<" "<<tg<<" "<<sm<<endl;
+//    if(sm<=tg)
+//        return 1;
+//    return 0;
+//
+//}
+//
+
+//+++++++++++++++++  GRAPH   ++++++++
+
+
+/////---->>> floyd warshell Algorithm
+
+const int Na=510;
+
+const int INF=1e9;
+
+
+//------>>> https://codeforces.com/contest/2008/problem/F
+
+ll Mod=1e9+7;
+//bool cmp(pair<int,int>& a, pair<int,int>& b){
+//
+//    if(a.F<b.F)
+//        return true;
+//    if(a.F == b.F)
+//    {
+//        return a.S<b.S;
+//    }
+//    return false;
+//}
+
+
+int dp[200005];
+
+int frog(int n,vector<int> &v,int a){
+
+        if(n==0)
+            return 0;
+        if(dp[n]!=-1)
+           return  dp[n];
+        int cost=INT_MAX;
+
+        for(int i=1;i<=a;i++)
+        {
+            if(n-i<0)
+                break;
+            int tm=frog(n-i,v,a);
+            cost=min(cost,(tm+abs(v[n]-v[n-i])));
+        }
+        dp[n]=cost;
+
+        return cost;
+
+
+}
+
+//https://atcoder.jp/contests/dp/tasks/dp_b
+
+
+int main( )
+{
+    TR
+
+
+   // test
+   // {
+         memset(dp,-1,sizeof(dp));
+        int n,a,b,c;
+        cin>>n>>a;
+
+        vi v;
+        
+        for(int i=0;i<n;i++)
+        {   
+            int x;
+            cin>>x; 
+            v.pb(x);
+        }
+
+        int ans=frog(n-1,v,a);
+
+        cout<<dp[n-1]<<endl;
+       
+
+
+  //  }
+
+}
