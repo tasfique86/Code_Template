@@ -1,0 +1,35 @@
+class Solution {
+public:
+
+int dp[200005];
+
+int fun(int n,vector<int> &nums){
+
+    if(dp[n]!=0)
+        return dp[n];
+    int mx=0;
+    for(int j=n-1;j>=0;j--)
+    {
+        int tm=0;
+        if(nums[j]<nums[n])
+        {
+           tm=fun(j,nums);
+          
+        }
+        mx=max(mx,tm);
+    }
+       
+    return dp[n]=mx+1;
+
+}
+    int lengthOfLIS(vector<int>& nums) {
+       // memset(dp,-1,sizeof(dp));
+     // https://leetcode.com/problems/longest-increasing-subsequence/description/
+         int ans=0;
+        for(int i=0;i<nums.size();i++)
+        {
+            ans=max(ans,fun(i,nums));
+        }
+      return ans;
+    }
+};
