@@ -1,0 +1,40 @@
+//https://leetcode.com/problems/coin-change/description/
+
+class Solution {
+public:
+int dp[200005];
+
+int fun(int amount,vector<int> &coins){
+
+    if(amount<0)
+        return 1e8;
+    if(amount==0)
+        return 0;
+    if(dp[amount]!=-1)
+        return dp[amount];
+    int mn=INT_MAX;
+    for(int i=0;i<coins.size();i++)
+    {
+        
+        int tm=fun(amount-coins[i],coins)+1;
+
+        mn=min(tm,mn);
+        
+    }
+    return dp[amount]=mn;
+       
+}
+    int coinChange(vector<int>& coins, int amount) {
+
+
+           memset(dp,-1,sizeof(dp));
+        
+       
+        int ans=fun(amount,coins);
+        if(ans>=1e8)
+            ans=-1;
+       return ans;
+       
+
+    }
+};
