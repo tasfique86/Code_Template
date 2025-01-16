@@ -1,0 +1,37 @@
+class Solution {
+
+int dp[301][20005];
+
+
+int fun(int in,int amount,vector<int> &coins){
+
+    if(amount==0) return 1;
+    if(in<0)  return 0;
+    if(dp[in][amount]!=-1) return dp[in][amount];
+
+
+  int way=0;
+  for(int coin_amount=0;coin_amount<=amount;coin_amount+=coins[in])
+  {
+      if(amount - coin_amount>=0)
+        way+=fun(in-1,amount - coin_amount,coins);
+  }
+
+  return dp[in][amount]=way;
+       
+}
+
+public:
+    int change(int amount, vector<int>& coins) {
+        
+        memset(dp,-1,sizeof(dp));
+        
+        int n=coins.size();
+        int ans=fun(n-1, amount,coins);
+        
+
+        
+      return ans;
+       
+    }
+};
