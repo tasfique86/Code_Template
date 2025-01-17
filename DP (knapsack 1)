@@ -1,0 +1,114 @@
+#include <bits/stdc++.h>
+#define MAX                 100005
+#define ll                  long long int
+#define vi                  vector<int>
+#define vl                  vector<ll>
+#define pb                  push_back
+#define test                int txx;cin>>txx;while (txx--)
+#define YES                 cout << "YES" << endl
+#define NO                  cout << "NO" << endl
+#define gcd(a,b)            __gcd(a,b)
+#define lcm(a,b)            (a*b)/gcd(a,b)
+#define fr(i,a,b)           for(ll i=a;i<=b;i++)
+#define srt(a)              sort (a.begin(),a.end())
+#define rsrt(v)             sort(v.rbegin(),v.rend())
+#define Asrt(a,n)             sort (a,a+n);
+#define Arsrt(a,n)            sort (a,a+n,greater<int>());
+#define mkp(x,y)             make_pair(x,y)
+#define vp                  vector<pair<int, int > >
+#define vpl                 vector<pair<ll, ll> >
+#define upbd(v,x)           upper_bound(v.begin(),v.end(),r)
+#define lwbd(v,x)           lower_bound(v.begin(),v.end(),r)
+#define v_min(a)            *min_element (a.begin(),a.end())
+#define v_max(a)            *max_element (a.begin(),a.end())
+#define F                   first
+#define S                   second
+#define MOD                 1000000007
+#define uint                unsigned int
+#define setp(num)           cout<<fixed<<setprecision(6)<<num<<endl
+#define Vsum(a)             accumulate(a.begin(),a.end(),0)
+#define Asum(a,n)           accumulate(a,a+n,0)
+#define coutv(v)            for(auto it:v){cout<<it<<' ';}cout<<endl;
+#define cinv(v)             for(auto &it:v)cin>>it;
+#define p_queue              priority_queue<ll>
+
+#define Nl                  cout<<"\n";
+
+
+#define TR ios::sync_with_stdio(false);cin.tie(0);
+
+using namespace std;
+
+
+///--------------Graph Moves--------------------------------------
+///const int fx[] = {+1,-1,+0,+0};
+///const int fy[] = {+0,+0,+1,-1};
+///const int fx[] = {+0,+0,+1,-1,-1,+1,-1,+1}; ///King's move
+///const int fy[] = {-1,+1,+0,+0,+1,+1,-1,-1}; ///king's Move
+///const int fx[] = {-2,-2,-1,-1,+1,+1,+2,+2}; ///knight's move
+///const int fy[] = {-1,+1,-2,+2,-2,+2,-1,+1}; ///knight's move
+///---------------------------------------------------------------
+
+
+
+ll Mod=1e9+7;
+
+
+ll dp[201][100005];
+
+
+ll func(ll in,vector<ll> &values,vector<ll> &weights,ll capacity){
+
+    if(in<0) return 0;
+
+    if(capacity == 0) return 0;
+
+    if(dp[in][capacity]!=-1)
+        return dp[in][capacity];
+    
+        ll tot=func(in-1, values,weights,capacity);
+        if(capacity - weights[in]>=0)
+        {
+            tot=max(tot,func(in-1, values,weights,capacity - weights[in]) + values[in]);
+        }
+  
+     
+    return  dp[in][capacity]=tot;
+
+}
+
+//https://atcoder.jp/contests/dp/tasks/dp_d
+
+
+int main( )
+{
+    TR
+
+
+   // test
+   // {
+         memset(dp,-1,sizeof(dp));
+        ll n,a,b,c,capacity;
+        cin>>n>>capacity;
+
+        vl values,weights;
+
+        for(int i=0;i<n;i++)
+        {
+            ll x,y;
+            cin>>x>>y;
+            weights.pb(x);
+            values.pb(y);
+        }
+       
+
+        ll ans=func(n-1, values,weights,capacity);
+
+
+        cout<<ans<<endl;
+
+
+
+  //  }
+
+}
