@@ -1,0 +1,125 @@
+#include <bits/stdc++.h>
+#define MAX                 100005
+#define ll                  long long int
+#define vi                  vector<int>
+#define vl                  vector<ll>
+#define pb                  push_back
+#define test                int txx;cin>>txx;while (txx--)
+#define YES                 cout << "YES" << endl
+#define NO                  cout << "NO" << endl
+#define gcd(a,b)            __gcd(a,b)
+#define lcm(a,b)            (a*b)/gcd(a,b)
+#define fr(i,a,b)           for(ll i=a;i<=b;i++)
+#define srt(a)              sort (a.begin(),a.end())
+#define rsrt(v)             sort(v.rbegin(),v.rend())
+#define Asrt(a,n)             sort (a,a+n);
+#define Arsrt(a,n)            sort (a,a+n,greater<int>());
+#define mkp(x,y)             make_pair(x,y)
+#define vp                  vector<pair<int, int > >
+#define vpl                 vector<pair<ll, ll> >
+#define upbd(v,x)           upper_bound(v.begin(),v.end(),r)
+#define lwbd(v,x)           lower_bound(v.begin(),v.end(),r)
+#define v_min(a)            *min_element (a.begin(),a.end())
+#define v_max(a)            *max_element (a.begin(),a.end())
+#define F                   first
+#define S                   second
+#define MOD                 1000000007
+#define uint                unsigned int
+#define setp(num)           cout<<fixed<<setprecision(6)<<num<<endl
+#define Vsum(a)             accumulate(a.begin(),a.end(),0)
+#define Asum(a,n)           accumulate(a,a+n,0)
+#define coutv(v)            for(auto it:v){cout<<it<<' ';}cout<<endl;
+#define cinv(v)             for(auto &it:v)cin>>it;
+#define p_queue              priority_queue<ll>
+
+#define Nl                  cout<<"\n";
+
+
+#define TR ios::sync_with_stdio(false);cin.tie(0);
+
+using namespace std;
+
+const int MAXN = 200002;
+int fen[MAXN];
+int arr[MAXN];
+
+void update(int i, int add, int N) {
+    while (i <= N) {
+        fen[i] += add;
+        i += (i & -i);
+    }
+}
+
+int sum(int i) {
+    int s = 0;
+    while (i > 0) {
+        s += fen[i];
+        i -= (i & -i);
+    }
+    return s;
+}
+
+int rangeSum(int l, int r) {
+    return sum(r) - sum(l - 1);
+}
+
+
+// int find(int k,int n){
+//     int curr= 0, ans =0, prevsum=0;
+//     for(int i=log2(n);i>=0;i--){
+//         if(fen[curr+(1<<i)] + prevsum <k ){
+//             curr = curr + (1<<i);
+//             prevsum += fen[curr];
+//         }
+//     }
+//     return (curr+1);
+// }
+
+
+
+
+// https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3238
+
+int main() {
+    TR
+    int n, cs = 1;
+    cin >> n;
+    cin.ignore(); // To handle leftover newline
+
+    while (n) {
+        memset(fen, 0, sizeof(fen));
+        
+        for (int i = 1; i <= n; i++) {
+            cin >> arr[i];
+            update(i, arr[i], n);
+        }
+
+        cin.ignore(); // Skip newline before getline
+        string s;
+
+        cout << "Case " << cs++ << ":\n";
+
+        while (getline(cin, s)) {
+            if (s == "END") break;
+
+            stringstream ss(s);
+            string type;
+            int a, b;
+            ss >> type >> a >> b;
+
+            if (type == "S") {
+                int delta = b - arr[a];
+                update(a, delta, n);
+                arr[a] = b;
+            } else if (type == "M") {
+                cout << rangeSum(a, b) << "\n";
+            }
+        }
+
+        cin >> n;
+        if (n) cout << "\n"; // Print blank line only between test cases
+        cin.ignore(); // Again to handle newline
+    }
+
+    return 0;
+}
